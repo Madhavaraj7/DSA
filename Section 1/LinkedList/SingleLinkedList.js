@@ -61,7 +61,7 @@ class linkedList {
 
     let curr = this.head;
     for (let i = 0; i < index - 1; i++) {
-      curr = curr.next;
+      curr = curr.next.next;
     }
     node.next = curr.next;
     curr.next = node;
@@ -142,6 +142,8 @@ class linkedList {
     return false;
   }
 
+  
+
   //print the list
   print() {
     if (this.size > 0) {
@@ -160,7 +162,6 @@ class linkedList {
   reverse(){
     let prev=null;
     let curr = this.head;
-
     while (curr) {
       let next = curr.next;
       curr.next = prev;
@@ -188,7 +189,7 @@ list.prepend(20);
 list.prepend(30);
 list.print();
 
-list.insert(77, -1);
+list.insert(77, 1);
 list.print();
 
 console.log(list.removeFrom(4));
