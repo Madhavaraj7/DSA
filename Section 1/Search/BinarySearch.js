@@ -70,7 +70,7 @@ function countOccurence(arr, val) {
   return count;
 }
 
-// console.log(countOccurence([1, 2, 3, 4, 4, 4,4, 5, 6, 7, 8], 4));
+console.log(countOccurence([1, 2, 3, 4, 4, 4,4, 5, 6, 7, 8], 1));
 
 function recursiveBinarySearch(arr, val, mid = Math.floor(arr.length / 2)) {
   const conditionLast = mid == (arr.length - 1) && val != arr[arr.length - 1]
@@ -99,20 +99,28 @@ function recursiveBinarySearch(arr, val, mid = Math.floor(arr.length / 2)) {
 
 
 
-function recursiveBinarySearch(arr, val, left, right) {
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-    if (arr[mid] === val) {
+function recursiveBinarySearch(arr,val,left,right) {
+
+  while (left<=right) {
+    let mid=Math.floor((left+right)/2);
+    if (arr[mid]===val) {
       return mid;
-    } else if (arr[mid] < val) {
-      return recursiveBinarySearch(arr, val, mid + 1, right);
-    } else {
-      return recursiveBinarySearch(arr, val, left, mid - 1);
+      
     }
+
+    if (arr[mid]<val) {
+      return recursiveBinarySearch(arr,val,mid+1,right)
+      
+    }
+    return recursiveBinarySearch(arr,val,left,mid-1)
+    
   }
   return -1;
+  
 }
 
-let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+let arr=[1,2,3,4,5,6,7,8];
 
-console.log(recursiveBinarySearch(arr,7, 0, arr.length - 1));
+// console.log(recursiveBinarySearch(arr,2,0,arr.length-1));
+
+
