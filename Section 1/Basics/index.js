@@ -45,4 +45,46 @@ function isPrime(n) {
 //Big-O = O(n)
 
 
+function palindrome(str) {
+  let res="";
 
+  for(let i=str.length-1;i>=0;i--){
+    res+=str[i]
+
+  }
+  return res===str
+  
+}
+
+console.log(palindrome("malayalam"));
+
+
+let arr=[1,2,3,4,5,6,7,8];
+
+let res=[];
+
+for(let i=0;i<arr.length;i+=2){
+let a=[];
+for(let j=i;j<i+2;j++){
+    if(arr[j]){
+        a.push(arr[j])
+    }
+}
+    res.push(a)
+}
+console.log(res);
+
+// let res1=res.flat(Infinity);
+
+let out = [];
+
+for(let i =0;i<res.length;i++){
+    for(let j = 0; j<res[i].length;j++){
+        out.push(res[i][j])
+        
+    }
+}
+
+console.log(out)
+
+// console.log(res1)

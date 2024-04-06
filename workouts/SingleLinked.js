@@ -50,7 +50,6 @@ class linkedlist {
       this.head = node;
       return ;
     }
-
     let curr = this.head;
     for (let i = 0; i < index - 1; i++) {
       curr = curr.next;
@@ -94,6 +93,7 @@ class linkedlist {
   removeFromValuewise(val) {
     if (this.head.val === val) {
       this.head = this.head.next;
+      return;
     }
     let prev;
     let curr = this.head;
@@ -110,7 +110,7 @@ class linkedlist {
     while (curr) {
         let next=curr.next;
         curr.next=prev;
-        prev=curr;
+        prev=curr; 
         curr=next
         
     }
@@ -146,19 +146,19 @@ list.addToFirst(4);
 list.addToFirst(5);
 list.addToFirst(6);
 list.print();
-list.addToLast(7);
 list.print();
 list.addToIndexWise(10, 5);
 list.print();
 list.removeTop();
 list.print();
 list.removeLast();
+list.addToLast(7);
 list.print();
 // console.log(list.removeFromValuewise(3));
-list.removeFromValuewise(10)
+list.removeFromValuewise(5)
 // console.log("after removing all");
 list.print();
 // list.removeAll();
 // console.log("before removing all");
-list.reverse()
-list.print()
+// list.reverse()
+// list.print()
