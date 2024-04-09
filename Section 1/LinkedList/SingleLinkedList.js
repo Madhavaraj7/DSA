@@ -35,7 +35,7 @@ class linkedList {
   // 0(1)
   prepend(val) {
     const node = new Node(val);
-    if (!this.head ) {
+    if (!this.head) {
       this.head = node;
       this.tail = node;
     } else {
@@ -93,7 +93,6 @@ class linkedList {
     return remove.val;
   }
 
-  
   //remove by value
   removeValue(val) {
     if (this.size === 0) return null;
@@ -125,7 +124,7 @@ class linkedList {
     }
     let i = 0;
     let curr = this.head;
-    while (i != curr) {
+    while (i !== index) {
       curr = curr.next;
       i++;
     }
@@ -142,8 +141,6 @@ class linkedList {
     return false;
   }
 
-  
-
   //print the list
   print() {
     if (this.size > 0) {
@@ -159,16 +156,32 @@ class linkedList {
     }
   }
 
-  reverse(){
-    let prev=null;
+  reverse() {
+    let prev = null;
     let curr = this.head;
     while (curr) {
       let next = curr.next;
       curr.next = prev;
       prev = curr;
-      curr = next
+      curr = next;
     }
     this.head = prev;
+  }
+  
+  removeDuplicates() {
+    let current = this.head;
+    let prev = null;
+    const duplicate = {};
+
+    while (current !== null) {
+      if (duplicate[current.val]) {
+        prev.next = current.next;
+      } else {
+        duplicate[current.val] = true;
+        prev = current;
+      }
+      current = current.next;
+    }
   }
 }
 
@@ -199,11 +212,9 @@ console.log(list.size);
 list.print();
 
 list.reverse();
-list.print()
-
-
-
-
+list.print();
+console.log(list.set(1, "heee"));
+list.print();
 
 //workouts
 
@@ -223,3 +234,30 @@ function oddAndEvenSum(list) {
 }
 
 oddAndEvenSum(list.head);
+
+
+
+
+
+
+
+
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8, 0, 9, 9, 5, 3];
+
+function addToLinedList(arr) {
+  const head = new Node(arr[0]);
+  let tail = head;
+
+  for (let i = 1; i < arr.length; i++) {
+    const node = new Node(arr[i]);
+    tail.next = node;
+    tail = node;
+  }
+  return head; 
+
+}
+
+let head = addToLinedList(arr);
+
+console.log(head)

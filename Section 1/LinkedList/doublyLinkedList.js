@@ -81,7 +81,7 @@ class Node {
       }
       let curr = this.head;
       while (curr) {
-        console.log(curr.val);
+        // console.log(curr.val);
         curr = curr.next;
       }
     }
@@ -152,7 +152,7 @@ class Node {
   // list.shift();
   // list.pop();
   // list.unshift(10);
-  // console.log(list.set(2, 99));
+  console.log(list.set(2, 99));
   // list.insert(0,11)
   list.insert(2, 99);
   list.print();

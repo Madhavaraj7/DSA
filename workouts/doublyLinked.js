@@ -31,18 +31,44 @@ class doublyLinkedList {
   AddLast(val) {
     const node = new Node(val);
     if (!this.head) {
-        this.head=node
-        
+      this.head = node;
+    } else {
+      this.tail.next = node;
+      node.prev = this.tail;
+      this.tail = node;
     }
-    let curr=this.head;
-    while (curr.next) {
-        curr=curr.next
-        
-    }
-    node.prev=curr;
-    curr.next=node;
+    this.size++;
+    return;
   }
-  
+
+  AddIndexWise(val, index) {
+    const node = new Node(val);
+    if (index < 0 || index > this.size) {
+      console.log(false);
+      return;
+    }
+
+    if (index === 0) {
+      node.next.prev = node;
+      node.next = this.head;
+      this.head = node;
+      return;
+    }
+
+    let curr = this.head;
+    for (let i = 0; i < index; i++) {
+      curr = curr.next;
+    }
+    node.prev = curr;
+    node.next = curr.next;
+
+    if (curr.next) {
+      curr.next.prev = node;
+    }
+    curr.next = node;
+    return;
+  }
+
   print() {
     if (this.size > 0) {
       let curr = this.head;
@@ -60,10 +86,11 @@ class doublyLinkedList {
 
 const list = new doublyLinkedList();
 list.AddFirst(1);
-list.AddFirst(2)
-list.AddFirst(3)
-list.AddFirst(4)
-list.AddFirst(5)
-list.AddFirst(6)
-list.print()
-
+list.AddFirst(2);
+list.AddFirst(3);
+list.AddFirst(4);
+list.AddFirst(5);
+list.AddFirst(6);
+list.print();
+list.AddIndexWise(10, 2);
+list.print();
