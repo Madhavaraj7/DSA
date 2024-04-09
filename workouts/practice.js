@@ -148,7 +148,7 @@ class linkedList {
       if (arr.includes(curr.val)) {
         prev.next = curr.next;
       } else {
-        arr.push(curr.val);
+        arr.push(curr.val) ;
         prev = curr;
       }
       curr = curr.next;
