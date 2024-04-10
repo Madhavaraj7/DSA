@@ -107,14 +107,16 @@ class linkedList {
   }
 
   reverse() {
-    let prev;
+    let prev=null;
     let curr = this.head;
     while (curr) {
       let next = curr.next;
       curr.next = prev;
       prev = curr;
+      curr.prev = next;
       curr = next;
     }
+    this.tail = this.head;
     this.head = prev;
   }
   get(index) {
@@ -178,13 +180,11 @@ list.addToFirst(3);
 list.addToFirst(4);
 list.addToFirst(5);
 list.addToFirst(6);
-list.addToFirst(6);
-list.addToFirst(7);
-list.addToFirst(7);
+
 
 // list.print();
 // list.print();
-list.addToIndexWise(10, 5);
+// list.addToIndexWise(10, 5);
 // list.print();
 // list.removeTop();
 // list.print();
@@ -192,20 +192,20 @@ list.addToIndexWise(10, 5);
 list.addToLast(0);
 list.print();
 
-list.removeDuplicates();
-// list.removeFromIndex(3);
+// list.removeDuplicates();
+list.removeFromIndex(2);
 list.print();
 // // console.log(list.removeFromValuewise(3));
-list.removeFromValuewise(7);
+// list.removeFromValuewise(7);
 // // console.log("after removing all");
 list.print();
 // // list.removeAll();
 // // console.log("before removing all");
-list.reverse();
+// list.reverse();
 // list.print();
 // console.log(list.get(2));
 // list.print();
-console.log(list.set(0, 1));
+// console.log(list.set(0, 1));
 
-console.log(list.size);
+// console.log(list.size);
 // list.print();

@@ -12,11 +12,7 @@ class linkedList {
     this.size = 0;
   }
 
-  size() {
-    return this.size;
-  }
-
-  AddtoFirst(val) {
+  addToFirst(val) {
     const node = new Node(val);
     if (!this.head) {
       this.head = node;
@@ -24,11 +20,12 @@ class linkedList {
     } else {
       node.next = this.head;
       this.head = node;
+      this.size++;
+      return;
     }
-    this.size++;
   }
 
-  AddtoLast(val) {
+  addTolast(val) {
     const node = new Node(val);
     if (!this.head) {
       this.head = node;
@@ -37,17 +34,19 @@ class linkedList {
       this.tail.next = node;
       this.tail = node;
     }
+    this.size++;
+    return;
   }
 
-  insertIndexWise(val, index) {
+  AddToIndex(val, index) {
     const node = new Node(val);
     if (index < 0 || index > this.size) {
-      console.log(false);
-      return;
+      return false;
     }
     if (index === 0) {
       node.next = this.head;
       this.head = node;
+      this.size++;
       return;
     }
 
@@ -57,36 +56,38 @@ class linkedList {
     }
     node.next = curr.next;
     curr.next = node;
+    this.size++;
     return;
   }
 
-  removeFromFirst() {
-    if (!this.head) {
-      console.log(false);
-    }
-    this.head = this.head.next;
-  }
-
-  removeFromLast() {
-    if (!this.head) {
-      console.log(false);
+  AddToValue(val, value) {
+    const node = new Node(val);
+    if (this.head.val === value) {
+      node.next = this.head;
+      this.head = node;
+      this.size++;
+      return;
     }
     let curr = this.head;
-    while (curr.next.next) {
+    for (let i = 0; i < value - 1; i++) {
       curr = curr.next;
     }
-    curr.next = null;
+    node.next = curr.next;
+    curr.next = node;
+    this.size++;
+    return this.head;
   }
 
-  removeFromindexWise(index) {
+  removeFromIndex(index) {
     if (index < 0 || index > this.size) {
-      console.log(false);
+      return false;
     }
 
     if (index === 0) {
       this.head = this.head.next;
       return;
     }
+
     let curr = this.head;
     for (let i = 0; i < index - 1; i++) {
       curr = curr.next;
@@ -95,7 +96,7 @@ class linkedList {
     return;
   }
 
-  removeFromValueWise(val) {
+  removeFromValue(val) {
     if (this.head.val === val) {
       this.head = this.head.next;
       return;
@@ -111,21 +112,58 @@ class linkedList {
     return;
   }
 
-  removeDublicate() {
+  get(index) {
+    let curr = this.head;
+    let i = 0;
+    while (i !== index) {
+      curr = curr.next;
+      i++;
+    }
+    return curr;
+  }
+
+  set(index, val) {
+    let foundValue = this.get(index);
+    if (foundValue) {
+      foundValue.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  reverse() {
+    let prev = null;
+    let curr = this.head;
+
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    this.head = prev;
+  }
+
+  removeDuplicates() {
     let prev;
     let curr = this.head;
     let arr = [];
-
+    let remove=[]
+    let count=0
     while (curr !== null) {
       if (arr.includes(curr.val)) {
         prev.next = curr.next;
+        remove.push(curr.val)
+        count++;
       } else {
         arr.push(curr.val);
         prev = curr;
       }
+      curr = curr.next;
     }
-    curr = curr.next;
+    return remove;
   }
+
 
   print() {
     if (this.size > 0) {
@@ -143,52 +181,33 @@ class linkedList {
 }
 
 const list = new linkedList();
-list.AddtoFirst(1);
-list.AddtoFirst(2);
-list.AddtoFirst(3);
-list.AddtoFirst(4);
-list.AddtoFirst(5);
-list.AddtoFirst(6);
-list.print();
-list.AddtoLast(0);
-list.print();
-list.insertIndexWise(7, 0);
-list.print();
-list.removeFromFirst();
-list.print();
-list.removeFromLast();
-list.print();
-list.removeFromindexWise(4);
-list.print();
-list.removeFromValueWise(4);
-list.print();
-list.AddtoFirst(6);
-list.AddtoFirst(5);
-list.print();
-list.removeDublicate();
-list.print();
 
-let arr = [1, 2, 3, 4, 5, 6, 7, 8];
-
-let res = [];
-
-for (let i = 0; i < arr.length; i += 2) {
-  let a = [];
-  for (let j = i; j < i + 2; j++) {
-    if (arr[j]) {
-      a.push(arr[j]);
-    }
-  }
-  res.push(a);
-}
-
-console.log(res);
-
-let out = [];
-for (let i = 0; i < res.length; i++) {
-  for (let j = 0; j < res[i].length; j++) {
-    out.push(res[i][j]);
-  }
-}
-
-console.log(out);
+list.addToFirst(1);
+list.addToFirst(2);
+list.addToFirst(3);
+list.addToFirst(4);
+list.addToFirst(5);
+list.addToFirst(6);
+list.print();
+list.addTolast(7);
+list.print();
+list.AddToIndex(10, 6);
+list.print();
+// console.log(list.AddToValue(11, 7));
+list.removeFromIndex(2);
+list.print();
+list.removeFromValue(10);
+list.print();
+list.set(3, 10);
+list.print();
+list.reverse();
+list.print();
+list.addToFirst(6);
+list.addToFirst(5);
+list.print();
+list.removeDuplicates();
+list.print();
+list.addToFirst(5);
+list.print();
+console.log(list.removeDuplicates());
+list.print();

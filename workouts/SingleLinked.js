@@ -48,7 +48,7 @@ class linkedlist {
     if (index === 0) {
       node.next = this.head;
       this.head = node;
-      return ;
+      return;
     }
     let curr = this.head;
     for (let i = 0; i < index - 1; i++) {
@@ -56,7 +56,7 @@ class linkedlist {
     }
     node.next = curr.next;
     curr.next = node;
-    return ;
+    return;
   }
 
   removeTop() {
@@ -91,7 +91,7 @@ class linkedlist {
     curr.next = curr.next.next;
   }
   removeFromValuewise(val) {
-    if (this.head.val === val) {
+    if (this.head.val) {
       this.head = this.head.next;
       return;
     }
@@ -103,23 +103,41 @@ class linkedlist {
     }
     prev.next = curr.next;
   }
+  removeEven() {
+    let prev = null;
+    let curr = this.head;
 
-  reverse(){
-    let prev;
-    let curr=this.head;
-    while (curr) {
-        let next=curr.next;
-        curr.next=prev;
-        prev=curr; 
-        curr=next 
+    while (curr !== null) {
+      if (curr.val % 2 === 0) {
+        if (prev === null) {
+          this.head = curr.next;
+        } else {
+          prev.next = curr.next;
+        }
+        curr = curr.next;
+      } else {
+        prev = curr;
+        curr = curr.next;
+      }
     }
-    this.head=prev
   }
 
-//   removeAll(){
-//     this.head=null;
-    
-//   }
+  reverse() {
+    let prev;
+    let curr = this.head;
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr = next;
+    }
+    this.head = prev;
+  }
+
+  //   removeAll(){
+  //     this.head=null;
+
+  //   }
 
   print() {
     if (this.size > 0) {
@@ -154,10 +172,12 @@ list.removeLast();
 list.addToLast(7);
 list.print();
 // console.log(list.removeFromValuewise(3));
-list.removeFromValuewise(5)
+list.removeFromValuewise(5);
 // console.log("after removing all");
 list.print();
 // list.removeAll();
 // console.log("before removing all");
 // list.reverse()
 // list.print()
+list.removeEven();
+list.print();

@@ -1,22 +1,19 @@
 class Node {
   constructor(val) {
     this.val = val;
-    this.prev = null;
     this.next = null;
+    this.prev = null;
   }
 }
 
-class doublyLinkedList {
+class doublyLinkedlist {
   constructor() {
     this.head = null;
     this.tail = null;
     this.size = 0;
   }
-  size() {
-    return this.size;
-  }
 
-  AddFirst(val) {
+  AddToFirst(val) {
     const node = new Node(val);
     if (!this.head) {
       this.head = node;
@@ -25,13 +22,16 @@ class doublyLinkedList {
       this.head.prev = node;
       node.next = this.head;
       this.head = node;
+      this.size++;
+      return;
     }
   }
 
-  AddLast(val) {
+  AddToLast(val) {
     const node = new Node(val);
     if (!this.head) {
       this.head = node;
+      this.tail = node;
     } else {
       this.tail.next = node;
       node.prev = this.tail;
@@ -41,34 +41,28 @@ class doublyLinkedList {
     return;
   }
 
-  AddIndexWise(val, index) {
+  AddToIndex(val, index) {
     const node = new Node(val);
     if (index < 0 || index > this.size) {
-      console.log(false);
-      return;
+      return false;
     }
-
     if (index === 0) {
-      node.next.prev = node;
+      this.head.prev = node;
       node.next = this.head;
       this.head = node;
+      this.size++;
       return;
     }
-
     let curr = this.head;
-    for (let i = 0; i < index; i++) {
+    for (let i = 0; i < index - 1; i++) {
       curr = curr.next;
     }
-    node.prev = curr;
     node.next = curr.next;
-
-    if (curr.next) {
-      curr.next.prev = node;
-    }
+    node.prev = curr;
+    node.next.prev = node;
     curr.next = node;
     return;
   }
-  
 
   print() {
     if (this.size > 0) {
@@ -85,13 +79,14 @@ class doublyLinkedList {
   }
 }
 
-const list = new doublyLinkedList();
-list.AddFirst(1);
-list.AddFirst(2);
-list.AddFirst(3);
-list.AddFirst(4);
-list.AddFirst(5);
-list.AddFirst(6);
+const list = new doublyLinkedlist();
+
+list.AddToFirst(1);
+list.AddToFirst(2);
+list.AddToFirst(3);
+list.AddToFirst(4);
 list.print();
-list.AddIndexWise(10, 2);
+list.AddToLast(5);
+list.print();
+list.AddToIndex(10, 5);
 list.print();

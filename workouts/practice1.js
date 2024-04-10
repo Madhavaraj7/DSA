@@ -20,13 +20,12 @@ class doublyLinkedlist {
       this.tail = node;
     } else {
       this.head.prev = node;
-      node.next = this.head;
+      node.next = this.head; 
       this.head = node;
       this.size++;
       return;
     }
-  }
-
+  } 
   addToLast(val) {
     const node = new Node(val);
     if (!this.head) {
@@ -96,7 +95,6 @@ class doublyLinkedlist {
       console.log(false);
       return;
     }
-
     if (index === 0) {
       this.head = this.head.next;
       if (this.head) {
@@ -105,7 +103,6 @@ class doublyLinkedlist {
         this.tail = null;
       }
     }
-
     let curr=this.head;
     for(let i=0;i<index-1;i++){
       curr=curr.next
@@ -113,6 +110,19 @@ class doublyLinkedlist {
     curr.next.prev=curr.prev
     curr.prev.next=curr.next;
     curr=null;
+  }
+  reverse() {
+    let prev=null;
+    let curr = this.head;
+    while (curr) {
+      let next = curr.next;
+      curr.next = prev;
+      prev = curr;
+      curr.prev = next;
+      curr = next;
+    }
+    this.tail = this.head;
+    this.head = prev;
   }
 
   print() {
@@ -143,5 +153,8 @@ list.addToLast(7);
 list.print();
 list.insertIndexWise(8, 6);
 list.print();
-list.removeFrom(7);
+// list.removeFrom(7);
 list.print();
+list.reverse();
+list.print();
+

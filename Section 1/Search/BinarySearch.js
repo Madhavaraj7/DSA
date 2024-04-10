@@ -69,7 +69,7 @@ function countOccurence(arr, val) {
   return count;
 }
 
-console.log(countOccurence([1, 2, 3, 4, 4, 4, 4, 5, 6, 7, 8], 1));
+console.log(countOccurence([1, 2, 3, 4, 4, 4, 4, 5, 6, 7, 8], 4));
 
 function recursiveBinarySearch(arr, val, mid = Math.floor(arr.length / 2)) {
   const conditionLast = mid == arr.length - 1 && val != arr[arr.length - 1];

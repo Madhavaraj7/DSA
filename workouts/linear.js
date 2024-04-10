@@ -22,3 +22,10 @@ return res;
 }
 
 console.log(globalserach([1, 2, 33, 4, 5, 6, 7, 33, 5], 33));
+
+
+
+
+
+
+
