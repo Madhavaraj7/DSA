@@ -28,7 +28,7 @@ function Search(arr, time) {
   return false;
 }
 
-console.log(Search(array, 4));
+// console.log(Search(array, 4));
 
 function reverseArray(arr) {
   let i = 0;
@@ -75,4 +75,48 @@ function findSum(arr, t) {
   }
 }
 
-console.log(findSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 17));
+// console.log(findSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 17));
+
+// let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+let res = [];
+
+// for (let i = 0; i < arr.length; i += 2) {
+//   let a = [];
+//   for (let j = i; j < i + 2; j++) {
+//     if (arr[j]) {
+//       a.push(arr[j]);
+//     }
+//   }
+//   res.push(a);
+// }
+// console.log(  res);
+
+// let arr1 = res.flat(Infinity);
+// console.log(arr1);
+// let out = [];
+
+// for (let i = 0; i < res.length; i++) {
+//   for (let j = 0; j < res[i].length; j++) {
+//     out.push(res[i][j]);
+//   }
+// }
+
+// console.log(out);
+
+function recursiveBinarySearch(arr, val, left, rigth) {
+  while (left <= rigth) {
+    let mid = Math.floor((left + rigth) / 2);
+    if (arr[mid] === val) {
+      return mid;
+    } else if (arr[mid] < val) {
+      return recursiveBinarySearch(arr, val, mid + 1,rigth);
+    } else {
+      return recursiveBinarySearch(arr, val, left,mid-1);
+    }
+  }
+  return -1;
+}
+
+let arr=[1,2,3,4,5,6,7,8];
+console.log(recursiveBinarySearch(arr,3,0,arr.length-1));

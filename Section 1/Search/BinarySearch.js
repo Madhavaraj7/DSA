@@ -82,7 +82,6 @@ function recursiveBinarySearch(arr, val, mid = Math.floor(arr.length / 2)) {
   if (val === arr[mid]) {
     return mid;
   }
-
   if (val < arr[mid]) {
     return recursiveBinarySearch(arr, val, mid - 1);
   } else {
@@ -109,4 +108,4 @@ function recursiveBinarySearch(arr, val, left, right) {
 
 let arr = [1, 2, 3, 4, 5, 6, 7, 8];
 
-// console.log(recursiveBinarySearch(arr,2,0,arr.length-1));
+console.log(recursiveBinarySearch(arr,8,0,arr.length-1));

@@ -25,6 +25,8 @@ class doublyLinkedList {
       this.head.prev = node;
       node.next = this.head;
       this.head = node;
+      this.size++;
+      return;
     }
   }
 
@@ -49,26 +51,23 @@ class doublyLinkedList {
     }
 
     if (index === 0) {
-      node.next.prev = node;
+      this.head.prev = node;
       node.next = this.head;
       this.head = node;
+      this.size++;
       return;
     }
 
     let curr = this.head;
-    for (let i = 0; i < index; i++) {
+    for (let i = 0; i < index - 1; i++) {
       curr = curr.next;
     }
     node.prev = curr;
     node.next = curr.next;
-
-    if (curr.next) {
-      curr.next.prev = node;
-    }
+    curr.next.prev = node;
     curr.next = node;
     return;
   }
-  
 
   print() {
     if (this.size > 0) {
@@ -93,5 +92,5 @@ list.AddFirst(4);
 list.AddFirst(5);
 list.AddFirst(6);
 list.print();
-list.AddIndexWise(10, 2);
+list.AddIndexWise(10, 5);
 list.print();

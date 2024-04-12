@@ -154,7 +154,7 @@ list.print();
 list.insertIndexWise(8, 6);
 list.print();
 // list.removeFrom(7);
-list.print();
-list.reverse();
-list.print();
+// list.print();
+// list.reverse();
+// list.print();
 
