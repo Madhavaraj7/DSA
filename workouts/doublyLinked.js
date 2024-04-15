@@ -4,8 +4,7 @@ class Node {
     this.prev = null;
     this.next = null;
   }
-}
-
+} 
 class doublyLinkedList {
   constructor() {
     this.head = null;
@@ -29,7 +28,6 @@ class doublyLinkedList {
       return;
     }
   }
-
   AddLast(val) {
     const node = new Node(val);
     if (!this.head) {
@@ -68,7 +66,6 @@ class doublyLinkedList {
     curr.next = node;
     return;
   }
-
   print() {
     if (this.size > 0) {
       let curr = this.head;

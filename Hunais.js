@@ -99,6 +99,41 @@ class linkedList {
     return;
   }
 
+  removeFromevalue(val) {
+    if (this.head.val === val) {
+      this.head = this.head.next;
+    }
+
+    let curr = this.head;
+    let prev = null;
+    while (curr && curr.val !== val) {
+      prev = curr;
+      curr = curr.next;
+    }
+    if (curr) {
+      prev.next = curr.next;
+      if (curr === this.tail) {
+        this.tail = prev;
+      } else {
+        curr.next.prev = prev;
+      }
+    }
+    return;
+  }
+  removeDuplicates() {
+    let curr = this.head;
+    let prev = null;
+    let arr = [];
+    while (curr !== null) {
+      if (arr.includes(curr.val)) {
+        prev.next = curr.next;
+      } else {
+        prev = curr;
+        arr.push(curr.val);
+      }
+      curr = curr.next;
+    }
+  }
   print() {
     if (this.size > 0) {
       let curr = this.head;
@@ -113,9 +148,7 @@ class linkedList {
     }
   }
 }
-
 const hunaisList = new linkedList();
-
 hunaisList.AddToFirst(1);
 hunaisList.AddToFirst(2);
 hunaisList.AddToFirst(3);
@@ -130,4 +163,23 @@ hunaisList.print();
 hunaisList.AddToIndex(10, 5);
 hunaisList.print();
 
+hunaisList.removeFromevalue(1);
+hunaisList.AddToFirst(6);
+hunaisList.AddToFirst(6);
 
+hunaisList.print();
+hunaisList.removeDuplicates();
+hunaisList.print();
+
+function isPowerOftwo(nums) {
+  if (nums < 1) {
+    return false;
+  }
+  if (nums === 1) {
+    return true;
+  }
+
+  return isPowerOftwo(nums / 2);
+}
+
+console.log(isPowerOftwo(1));

@@ -31,7 +31,7 @@ function isPalindromeNumber(n) {
   return true;
 }
 
-console.log(isPalindromeNumber(121));
+console.log(isPalindromeNumber(868688));
 
 function countVowelsAndNonVowelsCount(str) {
   let vowels = ["a", "e", "i", "o", "u"];
