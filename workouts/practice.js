@@ -100,6 +100,8 @@ class linkedList {
         return
       }
     }
+
+    
     prev.next = curr.next;
   }
 
