@@ -30,13 +30,13 @@ class linkedlist {
     const node = new Node(val);
     if (!this.head) {
       this.head = node;
+    }else{
+      this.tail.next=node;
+      
+      this.tail=node;
     }
 
-    let curr = this.head;
-    while (curr.next) {
-      curr = curr.next;
-    }
-    curr.next = node;
+    
   }
 
   addToIndexWise(val, index) {

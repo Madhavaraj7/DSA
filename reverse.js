@@ -1,21 +1,50 @@
-let arr = [1, 2, 6, 9, 22, 88, 112, 333, 444, 455, 1230];
-
-function recursiveBinary(arr, val, left = 0, right = arr.length - 1) {
+function binarySearch(arr, val) {
+  let left = 0;
+  let right = arr.length - 1;
   while (left <= right) {
     let mid = Math.floor((left + right) / 2);
     if (arr[mid] === val) {
-      return (arr[mid] = 999);
+      return mid;
     }
     if (arr[mid] < val) {
-      return recursiveBinary(arr, val, mid + 1, right);
+      left = mid + 1;
     } else {
-      return recursiveBinary(arr, val, left, mid - 1);
+      right = mid - 1;
     }
   }
   return -1;
 }
-recursiveBinary(arr, 1230);
-console.log(arr);
+
+let arr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+// console.log(binarySearch(arr,1));
+
+function recusrive(arr, val, left = 0, right = arr.length - 1) {
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (arr[mid] === val) {
+      return mid;
+    }
+    if (arr[mid] < val) {
+      return recusrive(arr, val, mid + 1, right);
+    } else {
+      return recusrive(arr, val, left, mid - 1);
+    }
+  }
+  return -1;
+}
+
+// console.log(recusrive(arr,5));
+
+function palidorme(nums) {
+  let str = "";
+  for (let i = nums.length - 1; i >= 0; i--) {
+    str += nums[i];
+  }
+  return str === nums;
+}
+
+// console.log(palidorme("malayalams"));
 
 class Node {
   constructor(val) {
@@ -25,7 +54,7 @@ class Node {
   }
 }
 
-class doublyLinkedList {
+class linkedList {
   constructor() {
     this.head = null;
     this.tail = null;
@@ -59,15 +88,12 @@ class doublyLinkedList {
       return;
     }
   }
-
   AddToIndex(val, index) {
     const node = new Node(val);
     if (index < 0 || index > this.size) {
       return console.log(false);
     }
-
     if (index === 0) {
-      this.head.prev = node;
       node.next = this.head;
       this.head = node;
       this.size++;
@@ -85,7 +111,6 @@ class doublyLinkedList {
     this.size++;
     return;
   }
-
   removeFromIndex(index) {
     if (index < 0 || index > this.size) {
       return console.log(false);
@@ -102,8 +127,7 @@ class doublyLinkedList {
     curr.prev = null;
     return;
   }
-
-  removeFromvalue(val) {
+  removeFromValue(val) {
     if (this.head.val === val) {
       this.head = this.head.next;
       if (this.head) {
@@ -113,7 +137,7 @@ class doublyLinkedList {
       }
     }
     let curr = this.head;
-    let prev = null;
+    let prev;
     while (curr && curr.val !== val) {
       prev = curr;
       curr = curr.next;
@@ -129,11 +153,9 @@ class doublyLinkedList {
     }
     return;
   }
-
   reverse() {
     let curr = this.head;
     let prev = null;
-
     while (curr !== null) {
       let next = curr.next;
       curr.next = prev;
@@ -142,12 +164,30 @@ class doublyLinkedList {
       curr = next;
     }
     this.head = prev;
-    return;
   }
-  removedublicates() {
+  get(index) {
+    let i = 0;
+    let curr = this.head;
+    while (i !== index) {
+      curr = curr.next;
+      i++;
+    }
+    return curr;
+  }
+  set(val, index) {
+    let foundValue = this.get(index);
+    if (foundValue) {
+      foundValue.val = val;
+      return true;
+    }
+    return false;
+  }
+
+  removeDuplicates() {
     let curr = this.head;
     let prev = null;
     let arr = [];
+
     while (curr !== null) {
       if (arr.includes(curr.val)) {
         prev.next = curr.next;
@@ -174,7 +214,7 @@ class doublyLinkedList {
   }
 }
 
-const list = new doublyLinkedList();
+const list = new linkedList();
 
 list.AddToFirst(1);
 list.AddToFirst(2);
@@ -182,57 +222,100 @@ list.AddToFirst(3);
 list.AddToFirst(4);
 list.AddToFirst(5);
 list.AddToFirst(6);
-list.print();
-// list.AddToIndex(10, 5);
-list.print();
-// list.removeFromIndex(6);
-list.print();
-list.removeFromvalue(1);
-list.print();
+
+list.AddToLast(0);
+list.AddToLast(1);
+list.AddToLast(2);
+list.AddToLast(3);
+
+list.AddToIndex(12, 3);
+// list.removeFromIndex(7);
+list.removeFromValue(3);
 // list.reverse();
-list.AddToFirst(5);
-list.AddToFirst(6);
-list.AddToFirst(5);
-list.AddToFirst(6);
-// list.print();
-// list.removedublicates();
+// list.set(10,6)
+// list.removeDuplicates();
 // list.print();
 
-function evenAndOddSum(list) {
-  let sum = 0;
+function oddEvenSum(list) {
+  let even = 0;
+  let odd = 0;
   while (list) {
-    sum += list.val;
+    if (list.val % 2 === 0) {
+      even += list.val;
+    } else {
+      odd += list.val;
+    }
     list = list.next;
   }
-  // console.log(sum);
+  //   console.log("odd:", odd, "even:", even);
 }
 
-evenAndOddSum(list.head);
+oddEvenSum(list.head);
 
-function arrrecusrion(arr) {
-  if (arr.length === 0) {
-    return null;
+// let n = 5;
+
+function suresh(n) {
+  let res = " ";
+  if (n <= 0) {
+    return "";
+  } else {
+    res += n;
   }
+  return (res += suresh(n - 1));
+}
+console.log(suresh(11));
 
-  return arrrecusrion(arr);
+let res = "1";
+function call(N, i) {
+  if (N == 1) {
+    return res;
+  }
+  res = res + i;
+  i++;
+  return call(N - 1, i);
+}
+// console.log(call(10,2))
+
+let i = 1;
+let a = "";
+function num(n) {
+  a += i + " ";
+  if (n === i) return;
+  i++;
+  num(n);
 }
 
-function binarySerach(nums, val) {
-  let left = 0;
-  let right = nums.length - 1;
-  while (left <= right) {
-    let mid = Math.floor((left + right) / 2);
-    if (nums[mid] === val) {
-      return mid;
-    } 
-    if (nums[mid] < val) {
-      left = mid + 1;
-    } else {
-      right = mid - 1;
+num(10);
+console.log(a);
+
+let arrr = [1, 2, 3, 4, 5, 6, 7];
+
+let res1 = [];
+
+for (let i = 0; i < arrr.length; i += 2) {
+  let a = [];
+  for (let j = i; j < i + 2; j++) {
+    if (arrr[j]) {
+      a.push(arrr[j]);
     }
   }
-  return -1;
-} 
+  res1.push(a);
+}
+console.log(res1);
 
-let nums=[1,2,3,4,5,6,7,8];
-// console.log(binarySerach(nums,8));
+let out = [];
+for (let i = 0; i < res1.length; i++) {
+  for (let j = 0; j < res1[i].length; j++) {
+    out.push(res1[i][j]);
+  }
+}
+console.log(out);
+
+function factorial(nums) {
+  if (nums < 2) {
+    return nums;
+  }
+  return nums*factorial(nums-1)
+}
+
+console.log(factorial(8));

@@ -18,7 +18,7 @@
 
 let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-function Search(arr, time) {
+function Search(arr, time) { 
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] == time) {
       return true;
@@ -44,7 +44,7 @@ function reverseArray(arr) {
   return arr;
 }
 
-// console.log(reverseArray(array)); // O(n)
+console.log(reverseArray(array)); // O(n)
 
 function moveZeros(arr) {
   let i = 0;
