@@ -17,7 +17,7 @@ class linkedList {
 
   addToFirst(val) {
     const node = new Node(val);
-    if (!this.head) {
+    if (!this.head) { 
       this.head = node;
       this.tail = node;
     } else {
@@ -37,7 +37,6 @@ class linkedList {
     }
     this.size++;
   }
-
   addToIndexWise(val, index) {
     const node = new Node(val);
     if (index < 0 || index > this.size) {
@@ -63,51 +62,49 @@ class linkedList {
     }
     this.head = this.head.next;
   }
-
   removeLast() {
     if (!this.head) {
       console.log(false);
     }
     let curr = this.head;
-
     while (curr.next.next) {
       curr = curr.next;
     }
     curr.next = null;
   }
-
   removeFromIndex(index) {
     if (index < 0 || index > this.size) {
       console.log(false);
     }
-
     if (index === 0) {
       this.head = this.head.next;
     }
-
     let curr = this.head;
-
     for (let i = 0; i < index - 1; i++) {
       curr = curr.next;
     }
     curr.next = curr.next.next;
   }
-
   removeFromValuewise(val) {
     if (this.head.val === val) {
       this.head = this.head.next;
+      return;
     }
     let prev;
     let curr = this.head;
     while (curr.val !== val) {
       prev = curr;
       curr = curr.next;
+      if (curr === null) {
+        console.log(false);
+        return
+      }
     }
     prev.next = curr.next;
   }
 
   reverse() {
-    let prev=null;
+    let prev = null;
     let curr = this.head;
     while (curr) {
       let next = curr.next;
@@ -150,7 +147,7 @@ class linkedList {
       if (arr.includes(curr.val)) {
         prev.next = curr.next;
       } else {
-        arr.push(curr.val) ;
+        arr.push(curr.val);
         prev = curr;
       }
       curr = curr.next;
@@ -181,7 +178,6 @@ list.addToFirst(4);
 list.addToFirst(5);
 list.addToFirst(6);
 
-
 // list.print();
 // list.print();
 // list.addToIndexWise(10, 5);
@@ -189,14 +185,15 @@ list.addToFirst(6);
 // list.removeTop();
 // list.print();
 // list.removeLast();
-list.addToLast(0);
+list.addToLast(7);
 list.print();
 
 // list.removeDuplicates();
-list.removeFromIndex(2);
+// list.removeFromIndex(1);
 list.print();
 // // console.log(list.removeFromValuewise(3));
-// list.removeFromValuewise(7);
+list.removeFromValuewise(6
+);
 // // console.log("after removing all");
 list.print();
 // // list.removeAll();
