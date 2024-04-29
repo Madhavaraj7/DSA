@@ -17,7 +17,7 @@ class linkedList {
 
   addToFirst(val) {
     const node = new Node(val);
-    if (!this.head) { 
+    if (!this.head) {
       this.head = node;
       this.tail = node;
     } else {
@@ -73,17 +73,20 @@ class linkedList {
     curr.next = null;
   }
   removeFromIndex(index) {
-    if (index < 0 || index > this.size) {
-      console.log(false);
+    if (index < 0 || index > this.size-1) {
+      return console.log(false);
     }
     if (index === 0) {
       this.head = this.head.next;
+      return;
     }
     let curr = this.head;
-    for (let i = 0; i < index - 1; i++) {
+    for (let i = 0; i < index -1 ; i++) {
       curr = curr.next;
     }
     curr.next = curr.next.next;
+    this.size--;
+    return;
   }
   removeFromValuewise(val) {
     if (this.head.val === val) {
@@ -97,11 +100,10 @@ class linkedList {
       curr = curr.next;
       if (curr === null) {
         console.log(false);
-        return
+        return;
       }
     }
 
-    
     prev.next = curr.next;
   }
 
@@ -187,24 +189,24 @@ list.addToFirst(6);
 // list.removeTop();
 // list.print();
 // list.removeLast();
-list.addToLast(7);
+list.addToLast(0);
 list.print();
 
 // list.removeDuplicates();
-// list.removeFromIndex(1);
+list.removeFromIndex(0);
 list.print();
 // // console.log(list.removeFromValuewise(3));
-list.removeFromValuewise(6
-);
+// list.removeFromValuewise(6
+// );
 // // console.log("after removing all");
-list.print();
+// list.print();
 // // list.removeAll();
 // // console.log("before removing all");
 // list.reverse();
 // list.print();
 // console.log(list.get(2));
-// list.print();
-// console.log(list.set(0, 1));
+list.print();
+console.log(list.set(0, 1));
 
 // console.log(list.size);
-// list.print();
+list.print();

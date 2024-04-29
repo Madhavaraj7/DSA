@@ -4,7 +4,7 @@ function binarySearch(arr,val) {
     while (left<=right) {
         let mid=Math.floor((left+right)/2);
         if (arr[mid]===val) {
-            return mid
+            return arr[mid]=999
             
         }else if(arr[mid]<val){
             left=mid+1;
@@ -16,5 +16,7 @@ function binarySearch(arr,val) {
     return -1;
     
 }
+let arr=[1,2,3,4,5,6,7,8,9]
+binarySearch(arr,9)
 
-console.log(binarySearch([1,2,3,4,5,6,7,8,9],5));
+console.log(arr);

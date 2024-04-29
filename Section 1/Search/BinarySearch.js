@@ -6,7 +6,6 @@ function binarySearch(arr, val) {
     if (arr[mid] === val) {
       return mid;
     }
-
     if (arr[mid] < val) {
       left = mid + 1;
     } else {

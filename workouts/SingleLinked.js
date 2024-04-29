@@ -166,7 +166,7 @@ list.print();
 list.print();
 list.addToIndexWise(10, 5);
 list.print();
-list.removeTop();
+// list.removeTop();
 list.print();
 list.removeLast();
 list.addToLast(7);

@@ -3,6 +3,7 @@ function reverseString(str) {
 
   for (let i = str.length - 1; i >= 0; i--) {
     res += str[i];
+
   }
   return res;
 }
@@ -38,11 +39,9 @@ function countVowelsAndNonVowelsCount(str) {
   let vowcount=0;
   let nonvowcount=0;
 
-
   for(let i=0;i<str.length;i++){
     if (vowels.includes(str[i])) {
       vowcount++
-
     }else{
       nonvowcount++
     }
