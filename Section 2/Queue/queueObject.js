@@ -1,44 +1,41 @@
 class Queue {
   constructor() {
     this.items = {};
-    this.rear = 0;
-    this.front = 0;
+    this.first = 0;
+    this.last = 0;
   }
-
   Enqueue(element) {
-    this.items[this.rear] = element;
-    this.rear++;
+    this.items[this.last++] = element;
   }
 
-  Dequeue() {
-    const item = this.items[this.front];
-    delete this.items[this.front];
-    this.front++;
-    return item;
+  Dequeue(){
+    let removed = this.items[this.first];
+    delete this.items[this.first];
+    this.first++;
+    return removed
   }
 
-  isEmpty() {
-    return this.rear - this.front === 0;
+  peek(){
+    return this.items[this.first]
   }
 
-  peek() {
-    return this.items[this.front];
+  isEmpty(){
+    return this.first - this.last ===0
   }
 
-  print() {
-    const prints= Object.values(this.items)
-    console.log(prints.toString());
+  print(){
+    const values = Object.values(this.items)
+    console.log(values);
   }
 }
 
 const queue = new Queue();
 
-queue.Enqueue(10)
-queue.Enqueue(20)
-queue.Enqueue(30)
-queue.Enqueue(40)
-queue.print()
-queue.Dequeue()
-queue.print()
-console.log(queue.peek());
-
+queue.Enqueue(10);
+queue.Enqueue(20);
+queue.Enqueue(30);
+queue.Enqueue(40);
+queue.print();
+queue.Dequeue();
+queue.print();
+console.log(queue.isEmpty());

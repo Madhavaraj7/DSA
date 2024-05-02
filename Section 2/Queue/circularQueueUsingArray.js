@@ -51,7 +51,6 @@ class CircularQueue {
     console.log(this.items.toString());
   }
 
-
   print1() {
     if (this.isEmpty()) {
       console.log("queue is empty");
@@ -65,18 +64,13 @@ class CircularQueue {
       console.log(str);
     }
   }
-
-  
 }
-
-
 
 const queue = new CircularQueue(3);
 
-queue.Enqueue(10)
-queue.Enqueue(20)
-queue.Enqueue(30)
-queue.Dequeue()
-queue.print1()
+queue.Enqueue(10);
+queue.Enqueue(20);
+queue.Enqueue(30);
+queue.Dequeue();
+queue.print1();
 console.log(queue.peek());
-
