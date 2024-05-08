@@ -15,6 +15,7 @@ function selectionSort(arr) {
   return arr;
 }
 
-let arr = [-6, 20, 8, -2, 4];
+
+let arr = [-6, 20, 8, -2, 2,3,4];
 selectionSort(arr);
 console.log(arr);

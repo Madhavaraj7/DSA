@@ -14,24 +14,24 @@ class BinarySearchTree {
   insert(val) {
     const node = new Node(val);
     if (this.root === null) {
-      this.root = node;
+      return (this.root = node);
     } else {
-      this.insertNode(this.root, node);
+      this.insertednode(this.root, node);
     }
   }
 
-  insertNode(root, node) {
+  insertednode(root, node) {
     if (node.val < root.val) {
       if (root.left === null) {
         root.left = node;
       } else {
-        this.insertNode(root.left, node);
+        this.insertednode(root.left, node);
       }
     } else {
       if (root.right === null) {
         root.right = node;
       } else {
-        this.insertNode(root.right, node);
+        this.insertednode(root.right, node);
       }
     }
   }
@@ -43,37 +43,31 @@ class BinarySearchTree {
       if (root.val === val) {
         return true;
       } else if (val < root.val) {
-        return this.search(root.left, val);
+        this.search(root.left, val);
       } else {
-        return this.search(root.right, val);
+        this.search(root.right, val);
       }
     }
   }
-  //dfs
-  postorder(root) {
-    if (root) {
-      this.postorder(root.left);
-      this.postorder(root.right);
-      console.log(root.val);
-    }
-  }
 
-  bfs(root) {
-    if (root === null) {
+  bfs() {
+    if (!this.root) {
       return null;
     }
+    console.log(this.root);
     const queue = [];
     const data = [];
 
     queue.push(this.root);
+    console.log(queue);
     while (queue.length) {
       let curr = queue.shift();
+        // console.log(curr.val);
       data.push(curr.val);
 
       if (curr.left) {
         queue.push(curr.left);
       }
-
       if (curr.right) {
         queue.push(curr.right);
       }
@@ -83,15 +77,10 @@ class BinarySearchTree {
 }
 
 const bst = new BinarySearchTree();
-bst.insert(20);
 bst.insert(10);
+bst.insert(5);
+bst.insert(15);
 bst.insert(30);
-bst.insert(12);
-bst.insert(31);
-
-console.log(bst.search(bst.root, 12));
-console.log(bst.search(bst.root, 35));
-
-console.log(bst.root);
+bst.insert(7);
+console.log(bst.search(30));
 console.log(bst.bfs());
-bst.postorder(bst.root);

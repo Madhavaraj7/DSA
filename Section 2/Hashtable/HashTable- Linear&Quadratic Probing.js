@@ -10,29 +10,27 @@ class HashTable {
       index += key.charCodeAt(i);
     }
     index %= this.capacity;
-    return this.quadraticProbing(index); //call linear or quadratic probing method
+    return this.linearProbing(index); //call linear or quadratic probing method
   }
 
   linearProbing(index) {
-    let start = index,
-      i = 0;
-    while (start < this.capacity) {
-      index += i;
+    const ind = index;
+    let i = 0;
+    while (index < this.capacity) {
+      index = ind + i;
       if (this.array[index] === undefined) return index;
-      start++;
-      i++;
+      i += 1;
     }
     return -1;
   }
 
   quadraticProbing(index) {
-    let start = index,
-      i = 0;
-    while (start < this.capacity) {
-      index += i * i;
+    const start = index;
+    let i = 0;
+    while (index < this.capacity) {
+      index = start + i;
       if (this.array[index] === undefined) return index;
-      start++;
-      i++;
+      i *= i;
     }
     return -1;
   }
@@ -71,9 +69,19 @@ class HashTable {
   }
 }
 
-const table = new HashTable(50);
+const table = new HashTable(5);
 table.set("TN", "Tamil Nadu");
 table.set("NT", "Delhi NCT");
-table.get("NT");
-//   console.log(table.array);
-table.print();
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+table.set("NT", "Delhi NCT");
+
+// table.get("NT");
+console.log(table.array);
+// table.print();

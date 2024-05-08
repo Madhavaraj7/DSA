@@ -51,19 +51,19 @@ class CircularQueue {
     console.log(this.items.toString());
   }
 
-  print1() {
-    if (this.isEmpty()) {
-      console.log("queue is empty");
-    } else {
-      let i;
-      let str = "";
-      for (i = this.first; i !== this.last; i = (i + 1) % this.size) {
-        str += this.items[i] + " ";
-      }
-      str += this.items[i];
-      console.log(str);
-    }
-  }
+  // print1() {
+  //   if (this.isEmpty()) {
+  //     console.log("queue is empty");
+  //   } else {
+  //     let i;
+  //     let str = "";
+  //     for (i = this.first; i !== this.last; i = (i + 1) % this.size) {
+  //       str += this.items[i] + " ";
+  //     }
+  //     str += this.items[i];
+  //     console.log(str);
+  //   }
+  // }
 }
 
 const queue = new CircularQueue(3);
@@ -72,5 +72,5 @@ queue.Enqueue(10);
 queue.Enqueue(20);
 queue.Enqueue(30);
 queue.Dequeue();
-queue.print1();
+queue.print();
 console.log(queue.peek());

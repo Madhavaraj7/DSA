@@ -49,7 +49,23 @@ class BinarySearchTree {
       }
     }
   }
-  //dfs
+
+  preorder(root) {
+    if (root) {
+      console.log(root.val);
+      this.preorder(root.left);
+      this.preorder(root.right);
+    }
+  }
+
+  inorder(root) {
+    if (root) {
+      this.inorder(root.left);
+      console.log(root.val);
+      this.inorder(root.right);
+    }
+  }
+
   postorder(root) {
     if (root) {
       this.postorder(root.left);
@@ -57,41 +73,14 @@ class BinarySearchTree {
       console.log(root.val);
     }
   }
-
-  bfs(root) {
-    if (root === null) {
-      return null;
-    }
-    const queue = [];
-    const data = [];
-
-    queue.push(this.root);
-    while (queue.length) {
-      let curr = queue.shift();
-      data.push(curr.val);
-
-      if (curr.left) {
-        queue.push(curr.left);
-      }
-
-      if (curr.right) {
-        queue.push(curr.right);
-      }
-    }
-    return data;
-  }
 }
 
 const bst = new BinarySearchTree();
-bst.insert(20);
 bst.insert(10);
-bst.insert(30);
-bst.insert(12);
-bst.insert(31);
-
-console.log(bst.search(bst.root, 12));
-console.log(bst.search(bst.root, 35));
-
-console.log(bst.root);
-console.log(bst.bfs());
-bst.postorder(bst.root);
+bst.insert(5);
+bst.insert(15);
+bst.insert(3);
+bst.insert(7);
+// bst.preorder(bst.root);
+// bst.inorder(bst.root);
+bst.postorder(bst.root)

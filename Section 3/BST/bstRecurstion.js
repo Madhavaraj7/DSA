@@ -6,6 +6,8 @@ class Node {
   }
 }
 
+// recursive method
+
 class BinarySearchTree {
   constructor() {
     this.root = null;
@@ -49,36 +51,48 @@ class BinarySearchTree {
       }
     }
   }
-  //dfs
-  postorder(root) {
-    if (root) {
-      this.postorder(root.left);
-      this.postorder(root.right);
-      console.log(root.val);
+
+  delete(val) {
+    this.root = this.deleteNode(this.root, val);
+  }
+
+  deleteNode(root, val) {
+    if (root === null) {
+      return root;
+    }
+    if (val < root.val) {
+      root.left = this.deleteNode(root.left, val);
+    } else if (val > root.val) {
+      root.right = this.deleteNode(root.right, val);
+    } else {
+      if (!root.left && !root.right) {
+        return null;
+      }
+      if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      }
+      root.val = this.min(root.right);
+      root.right = this.deleteNode(root.right, root.val);
+    }
+    return root;
+  }
+
+  min(root) {
+    if (!root.left) {
+      return root.val;
+    } else {
+      return this.min(root.left);
     }
   }
 
-  bfs(root) {
-    if (root === null) {
-      return null;
+  max(root) {
+    if (!root.right) {
+      return root.val;
+    } else {
+      return this.max(root.right);
     }
-    const queue = [];
-    const data = [];
-
-    queue.push(this.root);
-    while (queue.length) {
-      let curr = queue.shift();
-      data.push(curr.val);
-
-      if (curr.left) {
-        queue.push(curr.left);
-      }
-
-      if (curr.right) {
-        queue.push(curr.right);
-      }
-    }
-    return data;
   }
 }
 
@@ -89,9 +103,9 @@ bst.insert(30);
 bst.insert(12);
 bst.insert(31);
 
-console.log(bst.search(bst.root, 12));
-console.log(bst.search(bst.root, 35));
+bst.delete(10)
+// bst.search()
 
-console.log(bst.root);
-console.log(bst.bfs());
-bst.postorder(bst.root);
+console.log(bst.search(38));
+console.log(bst.min(bst.root));
+console.log(bst.max(bst.root));
