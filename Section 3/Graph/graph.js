@@ -19,6 +19,7 @@ class Graph {
 
     this.adjacencyList[vertex1].add(vertex2);
     this.adjacencyList[vertex2].add(vertex1);
+
   }
 
   removeEdges(vertex1, vertex2) {
@@ -40,13 +41,13 @@ class Graph {
     );
   }
 
-  
+
  //DFS
   depthFirstRecursive(start) {
     const visited = {};
     const result = [];
     const adjacencyList1 = this.adjacencyList;
-
+    
     (function dfs(vertex) {
       visited[vertex] = true;
       result.push(vertex);
@@ -59,26 +60,28 @@ class Graph {
   }
 
   //BFS
-  breadthFirstSearch(start) {
-    const visited = {};
-    const queue = [start];
-
+  breadthFirst(node) {
+    if (!this.adjacencyList[node]) return null;
+    let visited = {};
+    let result = [];
+    let queue = [];
+    queue.push(node);
+    visited[node] = true; 
     while (queue.length) {
-      const curr = queue.shift();
-      if (!visited[curr]) {
-        console.log(curr);
-
-        for (let neighbor of this.adjacencyList[curr]) {
-          queue.push(neighbor);
+      let vertex = queue.shift();
+      result.push(vertex);
+      for (let v of this.adjacencyList[vertex]) {
+        if (!visited[v]) {
+          queue.push(v);
+          visited[v] = true;
         }
-
-        visited[curr] = true;
       }
     }
+    return result;
+
   }
 
-
-  print() {
+  print() { 
     for (let i in this.adjacencyList) {
       console.log(i + "->" + [...this.adjacencyList[i]]);
     }
@@ -90,10 +93,10 @@ graph.addvertex("A");
 graph.addvertex("B");
 graph.addvertex("C");
 graph.addedges("A", "B");
-graph.addedges("B", "C");
+graph.addedges("A", "C");
 // graph.removeEdges("A", "B");
-graph.removeVertex("C");
-console.log(graph.breadthFirstSearch("A"));
+// graph.removeVertex("C");
+console.log(graph.breadthFirst("A"));
 graph.print();
 
-// console.log(graph.hasEdge("B", "A"));
+console.log(graph.hasEdge("B", "A"));

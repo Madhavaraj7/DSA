@@ -1,97 +1,85 @@
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
-  }
-}
-
-class BinarySearchTree {
+class Graph {
   constructor() {
-    this.root = null;
+    this.adjencency = {};
   }
 
-  insert(val) {
-    const node = new Node(val);
-    if (this.root === null) {
-      this.root = node;
-    } else {
-      this.insertNode(this.root, node);
+  addvertex(vertex) {
+    if (!this.adjencency[vertex]) {
+      this.adjencency[vertex] = new Set();
     }
   }
 
-  insertNode(root, node) {
-    if (node.val < root.val) {
-      if (root.left === null) {
-        root.left = node;
-      } else {
-        this.insertNode(root.left, node);
-      }
-    } else {
-      if (root.right === null) {
-        root.right = node;
-      } else {
-        this.insertNode(root.right, node);
-      }
+  addedges(vertex1, vertex2) {
+    if (!this.adjencency[vertex1]) {
+      this.adjencency(vertex1);
     }
+
+    if (!this.adjencency[vertex2]) {
+      this.adjencency(vertex2);
+    }
+
+    this.adjencency[vertex1].add(vertex2);
+    this.adjencency[vertex2].add(vertex1);
   }
 
-  search(root, val) {
-    if (root === null) {
-      return false;
-    } else {
-      if (root.val === val) {
-        return true;
-      } else if (val < root.val) {
-        return this.search(root.left, val);
-      } else {
-        return this.search(root.right, val);
-      }
-    }
-  }
-  //dfs
-  postorder(root) {
-    if (root) {
-      this.postorder(root.left);
-      this.postorder(root.right);
-      console.log(root.val);
-    }
-  }
+  dfs(start) {
+    let visited = {};
+    let data = [];
+    let adjacencyList1 = this.adjencency;
 
-  bfs(root) {
-    if (root === null) {
-      return null;
-    }
-    const queue = [];
-    const data = [];
+    (function dfs(vertex) {
+      visited[vertex] = true;
+      data.push(vertex);
 
-    queue.push(this.root);
-    while (queue.length) {
-      let curr = queue.shift();
-      data.push(curr.val);
-
-      if (curr.left) {
-        queue.push(curr.left);
-      }
-
-      if (curr.right) {
-        queue.push(curr.right);
-      }
-    }
+      adjacencyList1[vertex].forEach((n) => {
+        if (!visited[n]) {
+          return dfs(n);
+        }
+      });
+    })(start);
     return data;
   }
+
+  bfs(node) {
+    if (!this.adjencency[node]) {
+      return null;
+    }
+
+    let visited = {};
+    let data = [];
+    let queue = [];
+
+    queue.push(node);
+
+    while (queue.length) {
+      visited[vertex] = true;
+      let vertex = queue.shift();
+      data.push(vertex);
+      for (let i of this.adjencency[vertex]) {
+        if (!visited[i]) {
+          data.push(i);
+          visited[i] = true;
+          
+        }
+      }
+    }
+    return data
+  }
+
+  print() {
+    for (let i in this.adjencency) {
+      console.log(i + "->" + [...this.adjencency[i]]);
+    }
+  }
 }
 
-const bst = new BinarySearchTree();
-bst.insert(20);
-bst.insert(10);
-bst.insert(30);
-bst.insert(12);
-bst.insert(31);
+const graph = new Graph();
+graph.addvertex("A");
+graph.addvertex("B");
+graph.addvertex("C");
+graph.addedges("A", "B");
+graph.addedges("A", "C");
+graph.print();
 
-console.log(bst.search(bst.root, 12));
-console.log(bst.search(bst.root, 35));
-
-console.log(bst.root);
-console.log(bst.bfs());
-bst.postorder(bst.root);
+console.log(graph.dfs("A"));
+console.log(graph.bfs("B"));

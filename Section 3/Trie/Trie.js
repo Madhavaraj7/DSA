@@ -12,7 +12,6 @@ class Trie {
 
   insert(word) {
     let curr = this.root;
-
     for (let c of word) {
       if (!curr.child[c]) curr.child[c] = new TreeNode();
       curr = curr.child[c];

@@ -47,7 +47,7 @@ class MinHeap {
     }
   
     child2(index) {
-      return index * 2 + 2;
+      return index * 2 + 2; 
     }
   }
   
