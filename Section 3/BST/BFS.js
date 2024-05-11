@@ -19,7 +19,6 @@ class BinarySearchTree {
       this.insertednode(this.root, node);
     }
   }
-
   insertednode(root, node) {
     if (node.val < root.val) {
       if (root.left === null) {

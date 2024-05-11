@@ -1,63 +1,63 @@
 class Node {
-    constructor(val, priority) {
-        this.val = val;
-        this.priority = priority;
-    }
+  constructor(val, priority) {
+    this.val = val;
+    this.priority = priority;
+  }
 }
 
 class MinHeap {
-    constructor() {
-        this.heap = [];
-    }
+  constructor() {
+    this.heap = [];
+  }
 
-    insert(val, priority) {
-        const node = new Node(val, priority);
-        const A = this.heap;
-        A.push(node);
-        let i = A.length - 1;
-        while (i > 0 && A[i].priority < A[this.parent(i)].priority) {
-            [A[i], A[this.parent(i)]] = [A[this.parent(i)], A[i]];
-            i = this.parent(i);
-        }
+  insert(val, priority) {
+    const node = new Node(val, priority);
+    const A = this.heap;
+    A.push(node);
+    let i = A.length - 1;
+    while (i > 0 && A[i].priority < A[this.parent(i)].priority) {
+      [A[i], A[this.parent(i)]] = [A[this.parent(i)], A[i]];
+      i = this.parent(i);
     }
+  }
 
-    extractMin() {
-        const A = this.heap;
-        if (A.length === 0) return null;
-        
-        const min = A[0];
-        A[0] = A[A.length - 1];
-        A.pop();
-        
-        let i = 0;
-        while (i < A.length) {
-            let minChildIndex = this.child1(i);
-            if (minChildIndex >= A.length) break;
-            if (minChildIndex + 1 < A.length && A[minChildIndex + 1].priority < A[minChildIndex].priority) {
-                minChildIndex++;
-            }
-            if (A[i].priority > A[minChildIndex].priority) {
-                [A[i], A[minChildIndex]] = [A[minChildIndex], A[i]];
-                i = minChildIndex;
-            } else {
-                break;
-            }
-        }
-        
-        return min;
-    }
+  // extractMin() {
+  //     const A = this.heap;
+  //     if (A.length === 0) return null;
+ 
+  //     const min = A[0];
+  //     A[0] = A[A.length - 1];
+  //     A.pop();
 
-    parent(index) {
-        return Math.floor((index - 1) / 2);
-    }
+  //     let i = 0;
+  //     while (i < A.length) {
+  //         let minChildIndex = this.child1(i);
+  //         if (minChildIndex >= A.length) break;
+  //         if (minChildIndex + 1 < A.length && A[minChildIndex + 1].priority < A[minChildIndex].priority) {
+  //             minChildIndex++;
+  //         }
+  //         if (A[i].priority > A[minChildIndex].priority) {
+  //             [A[i], A[minChildIndex]] = [A[minChildIndex], A[i]];
+  //             i = minChildIndex;
+  //         } else {
+  //             break;
+  //         }
+  //     }
 
-    child1(index) {
-        return index * 2 + 1;
-    }
+  //     return min;
+  // }
 
-    child2(index) {
-        return index * 2 + 2;
-    }
+  parent(index) {
+    return Math.floor((index - 1) / 2);
+  }
+
+  child1(index) {
+    return index * 2 + 1;
+  }
+
+  child2(index) {
+    return index * 2 + 2;
+  }
 }
 
 const priorityQueue = new MinHeap();

@@ -58,3 +58,7 @@ class MinHeap {
   minHeap.insert(68);
   minHeap.insert(6);
   console.log(minHeap.heap);
+  minHeap.extractMin()
+  minHeap.extractMin()
+
+  console.log(minHeap.heap);
