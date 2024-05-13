@@ -60,6 +60,14 @@ class MaxHeap {
   }
   
   const minHeap = new MaxHeap();
+
+  minHeap.insert(10)
+  minHeap.insert(22)
+  minHeap.insert(34)
+  minHeap.insert(2)
+  minHeap.insert(11)
+  minHeap.insert(8)
+
  
   console.log(minHeap.heap);
   minHeap.extractMin()

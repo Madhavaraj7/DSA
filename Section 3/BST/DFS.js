@@ -50,12 +50,13 @@ class BinarySearchTree {
     }
   }
 
-  preorder(root) {
+  preorder(root, result = []) {
     if (root) {
-      console.log(root.val);
-      this.preorder(root.left);
-      this.preorder(root.right);
+      result.push(root.val);
+      this.preorder(root.left, result);
+      this.preorder(root.right, result);
     }
+    return result;
   }
 
   inorder(root) {
@@ -81,6 +82,6 @@ bst.insert(5);
 bst.insert(15);
 bst.insert(3);
 bst.insert(7);
-// bst.preorder(bst.root);
+console.log(bst.preorder(bst.root));
 // bst.inorder(bst.root);
-bst.postorder(bst.root)
+// bst.postorder(bst.root);

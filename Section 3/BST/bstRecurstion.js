@@ -126,3 +126,11 @@ console.log(bst.print())
 console.log(bst.search(38));
 console.log(bst.min(bst.root));
 console.log(bst.max(bst.root));
+
+
+
+
+
+
+
+

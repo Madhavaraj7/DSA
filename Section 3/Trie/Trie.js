@@ -45,11 +45,23 @@ class Trie {
     }
     return this.print(curr, keyword);
   }
+
+  search(word) {
+    let curr = this.root;
+    for (let c of word) {
+      if (!curr.child[c]) {
+        return false;
+      }
+      curr = curr.child[c];
+    }
+    return curr.endWord;
+  }
 }
 
 const trie = new Trie();
 trie.insert("Madhav"); 
 trie.insert("Madhavaraj");
 trie.insert("Hari");
-// console.log(trie.suggestion("Madha"));
+console.log(trie.suggestion("Madha"));
 console.log(trie.print()); 
+console.log(trie.search("raj"));
