@@ -22,7 +22,7 @@ class Trie {
   }
 
   print(curr = this.root, word = "", result = []) {
-    if (curr.endWord ) {
+    if (curr.endWord) {
       result.push(word);
     }
     for (let c in curr.child) {
@@ -40,7 +40,7 @@ class Trie {
         keyword += c;
         curr = curr.child[c];
       } else {
-        return []; 
+        return [];
       }
     }
     return this.print(curr, keyword);
@@ -56,12 +56,15 @@ class Trie {
     }
     return curr.endWord;
   }
+  
+
+  
 }
 
 const trie = new Trie();
-trie.insert("Madhav"); 
+trie.insert("Madhav");
 trie.insert("Madhavaraj");
 trie.insert("Hari");
 console.log(trie.suggestion("Madhav"));
-console.log(trie.print()); 
+console.log(trie.print());
 console.log(trie.search("Madh"));

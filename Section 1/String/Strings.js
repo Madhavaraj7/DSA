@@ -26,7 +26,7 @@ function isPalindromeNumber(n) {
   let j = str.length - 1;
   while (i < j) {
     if (str[i] !== str[j]) return false;
-    i++;
+    i++;  
     j--;
   }
   return true;

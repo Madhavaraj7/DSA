@@ -93,44 +93,49 @@ class BinarySearchTree {
     }
   }
 
-
   print(root = this.root, result = []) {
     if (root === null) return result;
-    
+
     this.print(root.left, result);
     result.push(root.val);
     this.print(root.right, result);
-    
+
     return result;
   }
-  
-  
 
+  
+  height(node = this.root) {
+    if (!node) return -1;
+    let leftHeight = this.height(node.left);
+    let rightHeight = this.height(node.right);
+    return Math.max(leftHeight, rightHeight) + 1;
+}
+
+  isBalanced(node = this.root) {
+    if (!node) return true;
+    const heightDiff = Math.abs(this.height(node.left) - this.height(node.right));
+    if (heightDiff > 1) return false;
+    return this.isBalanced(node.left) && this.isBalanced(node.right);
+}
 
 }
 
 const bst = new BinarySearchTree();
 bst.insert(20);
 bst.insert(10);
-bst.insert(30);
+bst.insert(38);
 bst.insert(12);
-bst.insert(31);
-// console.log(bst.print())
-console.log(bst.root);
-bst.delete(10);
-console.log(bst.print())
+bst.insert(12);
 
+// console.log(bst.print())
+// console.log(bst.root);
+console.log(bst.isBalanced());
+// bst.delete(10);
+console.log(bst.print());
 
 // bst.search()
 
-console.log(bst.search(38));
+// console.log(bst.search(38));
 console.log(bst.min(bst.root));
 console.log(bst.max(bst.root));
-
-
-
-
-
-
-
-
+// console.log(bst.findMax(bst.root));

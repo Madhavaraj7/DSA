@@ -131,7 +131,7 @@ tree3.right = new TreeNode2(7);
 tree3.left.left = new TreeNode2(2);
 tree3.left.right = new TreeNode2(4);
 tree3.right.left = new TreeNode2(6);
-tree3.right.right = new TreeNode2(6);
+tree3.right.right = new TreeNode2(8);
 
 console.log(isBST(tree)); // Output: true
 
@@ -220,3 +220,24 @@ tree.right.left = new TreeNode(6);
 tree.right.right = new TreeNode(8);
 
 console.log("Third highest element:", findThirdLargest(tree)); // Output: 6
+
+
+
+
+
+
+// findClosestValue(target) {
+//   if (!this.root) {
+//     return null;
+//   }
+//   let closest = this.root.val;
+//   let curr = this.root;
+//   while (curr) {
+//     if (Math.abs(curr.val - target) < Math.abs(closest - target)) {
+//       closest = curr.val;
+//     }
+
+//     curr = target < curr.val ? curr.left : curr.right;
+//   }
+//   return closest;
+// // 
