@@ -40,7 +40,7 @@ class Trie {
         keyword += c;
         curr = curr.child[c];
       } else {
-        return [];
+        return []; 
       }
     }
     return this.print(curr, keyword);
@@ -62,6 +62,6 @@ const trie = new Trie();
 trie.insert("Madhav"); 
 trie.insert("Madhavaraj");
 trie.insert("Hari");
-console.log(trie.suggestion("Madha"));
+console.log(trie.suggestion("Madhav"));
 console.log(trie.print()); 
-console.log(trie.search("raj"));
+console.log(trie.search("Madh"));
