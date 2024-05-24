@@ -56,6 +56,20 @@ class Trie {
     }
     return curr.endWord;
   }
+
+  
+  longestCommonPrefix() {
+    let curr = this.root;
+    let prefix = "";
+
+    while (curr && !curr.endWord && Object.keys(curr.child).length === 1) {
+      let nextChar = Object.keys(curr.child)[0];
+      prefix += nextChar;
+      curr = curr.child[nextChar];
+    }
+
+    return prefix;
+  }
   
 
   

@@ -241,3 +241,49 @@ console.log("Third highest element:", findThirdLargest(tree)); // Output: 6
 //   }
 //   return closest;
 // // 
+
+
+
+
+
+
+
+
+
+
+
+
+
+class TreeNode {
+  constructor(val) {
+    this.val = val;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+
+
+
+const tree = new TreeNode(5);
+tree.left = new TreeNode(3);
+tree.right = new TreeNode(7);
+tree.left.left = new TreeNode(2);
+tree.left.right = new TreeNode(4);
+tree.right.left = new TreeNode(6);
+tree.right.right = new TreeNode(8);
+
+console.log(ThirdLargest(tree));
+
+
+
+
+
+
+
+
+
+
+
+
+

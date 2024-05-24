@@ -21,31 +21,37 @@ class MinHeap {
     }
   }
 
-  // extractMin() {
-  //     const A = this.heap;
-  //     if (A.length === 0) return null;
- 
-  //     const min = A[0];
-  //     A[0] = A[A.length - 1];
-  //     A.pop();
+  extractMin() {
+    const A = this.heap;
+    // if (A.length === 0) return null;
+    // if (A.length === 1) return A.pop();
 
-  //     let i = 0;
-  //     while (i < A.length) {
-  //         let minChildIndex = this.child1(i);
-  //         if (minChildIndex >= A.length) break;
-  //         if (minChildIndex + 1 < A.length && A[minChildIndex + 1].priority < A[minChildIndex].priority) {
-  //             minChildIndex++;
-  //         }
-  //         if (A[i].priority > A[minChildIndex].priority) {
-  //             [A[i], A[minChildIndex]] = [A[minChildIndex], A[i]];
-  //             i = minChildIndex;
-  //         } else {
-  //             break;
-  //         }
-  //     }
+    // const min = A[0];
+    A[0] = A.pop();
+    this.heapify(0);
+    // return min;
+  }
 
-  //     return min;
-  // }
+  heapify(i) {
+    const A = this.heap;
+    const length = A.length;
+    let smallest = i;
+    const left = this.child1(i);
+    const right = this.child2(i);
+
+    if (left < length && A[left].priority < A[smallest].priority) {
+      smallest = left;
+    }
+
+    if (right < length && A[right].priority < A[smallest].priority) {
+      smallest = right;
+    }
+
+    if (smallest !== i) {
+      [A[i], A[smallest]] = [A[smallest], A[i]];
+      this.heapify(smallest);
+    }
+  }
 
   parent(index) {
     return Math.floor((index - 1) / 2);
@@ -60,12 +66,13 @@ class MinHeap {
   }
 }
 
+// Example usage
 const priorityQueue = new MinHeap();
 priorityQueue.insert(10, 1);
 priorityQueue.insert(51, 2);
 priorityQueue.insert(35, 3);
 priorityQueue.insert(68, 9);
 priorityQueue.insert(6, 0);
-// priorityQueue.extractMin();
-// priorityQueue.extractMin();
+priorityQueue.extractMin();
+priorityQueue.extractMin();
 console.log(priorityQueue.heap);
