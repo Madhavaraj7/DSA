@@ -97,6 +97,6 @@ graph.addedges("A", "C");
 // graph.removeEdges("A", "B");
 // graph.removeVertex("C");
 console.log(graph.breadthFirst("B"));
-// graph.print();
+graph.print();
 
 console.log(graph.hasEdge("B", "A"));

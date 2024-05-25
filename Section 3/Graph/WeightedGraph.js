@@ -46,5 +46,7 @@ class WeightedGraph {
   graph.addVertex("C");
   graph.addEdge("A", "B", 5);
   graph.addEdge("B", "C", 3);
+  // graph.removeEdge("A","B")
+  graph.removeVertex("A")
   // graph.print()
   console.log(graph.adjacencyList);

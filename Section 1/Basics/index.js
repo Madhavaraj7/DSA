@@ -119,6 +119,7 @@ function amstrong(num) {
   let n = num;
   while (n) {
     let last = n % 10;
+    // console.log(last);
     sum += Math.pow(last,3);
     n = Math.floor(n / 10);
   }

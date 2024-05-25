@@ -1,40 +1,70 @@
-class TreeNode {
-  constructor(val) {
-    this.val = val;
-    this.left = null;
-    this.right = null;
+class Graph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+
+  addTovertex(vertex) {
+    if (!this.adjacencyList[vertex]) {
+      this.adjacencyList[vertex] = new Set();
+    }
+  }
+
+  addToedges(vertex1, vertex2) {
+    if (!this.adjacencyList[vertex1]) {
+      this.addTovertex(vertex1);
+    }
+    if (!this.adjacencyList[vertex2]) {
+      this.addTovertex(vertex2);
+    }
+    this.adjacencyList[vertex1].add(vertex2);
+    this.adjacencyList[vertex2].add(vertex1);
+  }
+
+  removedges(vertex1, vertex2) {
+    this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(
+      (v) => v.node !== vertex2
+    );
+  }
+
+  removevertex(vertex){
+    while (this.adjacencyList[vertex].length) {
+      const adjacencyList = this.adjacencyList[vertex].pop();
+      this.removedges(vertex,adjacencyList.node);
+      
+    }
+    delete this.adjacencyList[vertex]
+  }
+
+  depathFirstSearch(start) {
+    let visited = {};
+    let data = [];
+    let adjacencyList1 = this.adjacencyList;
+
+    (function dfs(vertex) {
+      visited[vertex] = true;
+      data.push(vertex);
+      adjacencyList1[vertex].forEach((n) => {
+        if (!visited[n]) {
+          return dfs(n);
+        }
+      });
+    })(start);
+    return data;
+  }
+
+  print() {
+    for (let i in this.adjacencyList) {
+      console.log(i + "->" + [...this.adjacencyList[i]]);
+    }
   }
 }
-function TotalSum(root) {
-  if (!root) {
-    return null;
-  }
-  function min(root) {
-    while (root.left) {
-      root = root.left;
-    }
-    return root.val;
-  }
-  function max(root) {
-    while (root.right) {
-      root = root.right;
-    }
-    return root.val;
-  }
 
-  let minimum = min(root);
-  let maximum = max(root);
-
-  return minimum + maximum;
-}
-
-const tree = new TreeNode(5);
-tree.left = new TreeNode(3);
-tree.right = new TreeNode(7);
-tree.left.left = new TreeNode(1);
-tree.left.right = new TreeNode(4);
-tree.right.left = new TreeNode(6);
-tree.right.right = new TreeNode(8);
-
-
-console.log(TotalSum(tree));
+const g = new Graph();
+g.addTovertex("A");
+g.addTovertex("B");
+g.addTovertex("C");
+g.addToedges("A", "C");
+g.addToedges("A", "B");
+g.print();
+console.log(g.depathFirstSearch("B"));
+// console.log(g.adjacencyList);
