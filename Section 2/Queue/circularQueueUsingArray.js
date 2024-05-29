@@ -11,6 +11,7 @@ class CircularQueue {
     return this.currentLength === this.size;
   }
 
+  
   isEmpty() {
     return this.currentLength === 0;
   }
