@@ -87,11 +87,12 @@ for (let i = 0; i < res.length; i++) {
 // write a function to find the extra char that in string2 but not in string1
 let str1 = "ddffkkkk";
 
-let str2 = "dMdyffllllllkkkkk";
+let str2 = "dM9dyffllllllkkkkk";
 
 function extra(str1, str2) {
   let obj = {};
   let res = "";
+
   for (let s of str1) {
     if (obj[s]) {
       obj[s]++;
@@ -120,10 +121,10 @@ function amstrong(num) {
   while (n) {
     let last = n % 10;
     // console.log(last);
-    sum += Math.pow(last,3);
+    sum += Math.pow(last, 3);
     n = Math.floor(n / 10);
   }
   return num === sum;
 }
 
-console.log(amstrong(370)); 
+console.log(amstrong(370));
