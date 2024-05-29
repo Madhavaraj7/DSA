@@ -25,4 +25,4 @@ Projects 🚧
 Coming soon!
 
 Resources 📚
-This repository is inspired by various learning resources and personal practice.
+This repository is inspired by various learning resources and personal practice
