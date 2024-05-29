@@ -63,10 +63,6 @@ class BinarySearchTree {
   display() {
     return console.log(this.root);
   }
-
-
-  
- 
 }
 
 const bst = new BinarySearchTree();
@@ -77,9 +73,9 @@ bst.insert(30);
 bst.insert(40);
 bst.insert(6);
 bst.display();
+
 // bst.root.left.val = 23
 bst.display();
-
 
 console.log(bst.search(30));
 
